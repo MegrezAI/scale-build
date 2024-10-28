@@ -392,7 +392,7 @@ sources:
   branch: truenas/zfs-2.3-release
   env:
     KVERS: "$(shell apt info linux-headers-truenas-production-amd64 | awk '/Source:/ { print $$2}' | sed 's/linux-//')"
-    KSRC: "/usr/src/linux-headers-$(KVERS)"
+    KSRC: "/usr/src/linux-headers-truenas-production-amd64"
     KOBJ: "$(KSRC)"
   predepscmd:
     - "cp -r contrib/debian debian"
@@ -418,7 +418,7 @@ sources:
       batch_priority: 0
       env:
         KVERS: "$(shell apt info linux-headers-truenas-debug-amd64 | awk '/Source:/ { print $$2}' | sed 's/linux-//')"
-        KSRC: "/usr/src/linux-headers-$(KVERS)"
+        KSRC: "/usr/src/linux-headers-truenas-debug-amd64"
         KOBJ: "$(KSRC)"
       predepscmd:
         - "cp -r contrib/debian debian"
