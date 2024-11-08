@@ -556,6 +556,9 @@ sources:
   branch: main
 - name: puter
   repo: https://github.com/MegrezAI/puter
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
   buildcmd:
     - "dpkg-buildpackage -us -uc"
   branch: main
