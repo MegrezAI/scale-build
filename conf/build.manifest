@@ -315,6 +315,10 @@ additional-packages:
 - name: nas-broadcast
   comment: used by ocean nas
   install_recommends: true
+- name: puter
+  comment: used by ocean nas
+  install_recommends: true
+
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
 # NOTE: Installed in the order listed
@@ -547,6 +551,11 @@ sources:
     - "apt -y install golang-go dh-make devscripts build-essential fakeroot"
   prebuildcmd:
     - "sh ./build.sh"
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
+- name: puter
+  repo: https://github.com/MegrezAI/puter
   buildcmd:
     - "dpkg-buildpackage -us -uc"
   branch: main
