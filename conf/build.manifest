@@ -557,7 +557,7 @@ sources:
 - name: puter
   repo: https://github.com/MegrezAI/puter
   predepscmd:
-  - "apt -y install wget"
+    - "apt -y install wget"
   prebuildcmd:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
