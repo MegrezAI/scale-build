@@ -36,7 +36,7 @@ def install_iso_packages_impl():
         run_in_chroot(['apt', 'install', '-y', package])
     
 
-    run_in_chroot(['sed', '-i', 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/', '/etc/locale.gen'])
+    run_in_chroot(['sed', '-i', 's/^# *zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/', '/etc/locale.gen'])
 
     run_in_chroot(['locale-gen'])
 
