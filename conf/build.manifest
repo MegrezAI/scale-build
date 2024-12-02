@@ -333,6 +333,8 @@ iso-packages:
 - python3-truenas-installer
 - udhcpc
 - vim-tiny
+- locales
+- python3-pyqt5
 
 #
 # List of Git source repositories the build will checkout and perform a debian
