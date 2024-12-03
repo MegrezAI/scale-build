@@ -59,7 +59,9 @@ Cleans up all the temporary files and returns to original state.
 ## Overrides
 
 It is possible using make and environment variables to override which source repos get checked out during "make checkout" phase.
-
+PARALLEL_BUILDS=1
+SKIP_SOURCE_REPO_VALIDATION=1
+http_proxy=http://10.10.0.20:8119
 TRUENAS_BRANCH_OVERRIDE - Can be used to override all source repos at once
 
 <NAME>_OVERRIDE - Can override specific repos, I.E. debootstrap_OVERRIDE="master"
