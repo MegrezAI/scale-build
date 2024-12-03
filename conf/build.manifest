@@ -28,10 +28,6 @@ apt-repos:
     distribution: bookworm
     component: stable
     key: keys/docker.gpg
-  - url: https://pkgs.tailscale.com/stable/debian
-    distribution: bookworm
-    component: main
-    key: keys/tailscale.gpg
 #
 # Packages which are installed into the base TrueNAS SCALE System by default
 # NOTE: Installed in the order listed
@@ -306,7 +302,7 @@ additional-packages:
 - name: p7zip-rar
   comment: requested by community (NAS-131306) https://forums.truenas.com/t/accepted-add-unrar-7zip-to-truenas-scale/10075
   install_recommends: false
-- name: tailscale
+- name: tailscaled
   comment: used by ocean nas
   install_recommends: true
 - name: nas-broadcast
@@ -544,6 +540,15 @@ sources:
     - "tar cvzf node_files.tgz node_modules/"
     - "rm -rf node_modules"
   branch: main
+- name: tailscaled
+  repo: https://github.com/MegrezAI/tailscale
+  predepscmd:
+    - "apt -y install dh-make devscripts build-essential fakeroot"
+  prebuildcmd:
+    - "sh ./build.sh"
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
 - name: nas-broadcast
   repo: https://github.com/MegrezAI/nas-broadcast
   predepscmd:
@@ -565,19 +570,18 @@ sources:
   branch: main
 - name: sedutil
   repo: https://github.com/truenas/sedutil
-  branch: release/24.10.0.2
+  branch: release/24.10.1
 - name: python_netsnmpagent
   repo: https://github.com/truenas/python-netsnmpagent
-  branch: release/24.10.0.2
+  branch: release/24.10.1
 - name: python_truenas_requirements
   repo: https://github.com/truenas/python-truenas-requirements
-  branch: release/24.10.0.2
+  branch: release/24.10.1
 - name: licenselib
   repo: https://github.com/truenas/licenselib
-  branch: release/24.10.0.2
+  branch: release/24.10.1
 - name: zectl
   repo: https://github.com/truenas/zectl
-  branch: release/24.10.0.2
   branch: release/24.10.1
 - name: sedutil
   repo: https://github.com/truenas/sedutil
