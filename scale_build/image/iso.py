@@ -35,7 +35,6 @@ def install_iso_packages_impl():
     for package in get_manifest()['iso-packages']:
         run_in_chroot(['apt', 'install', '-y', package])
 
-
     # Inject vendor name into grub.cfg
     with open(CONF_GRUB, 'r') as f:
         grub_cfg = f.read()
@@ -117,7 +116,7 @@ def make_iso_file():
         run_in_chroot(['apt-get', 'update'], check=False)
         run_in_chroot([
             'apt-get', 'install', '-y', 'grub-common', 'grub2-common', 'grub-efi-amd64-bin',
-            'grub-efi-amd64-signed', 'grub-pc-bin', 'mtools', 'xorriso', 'fonts-wqy-zenhei'
+            'grub-efi-amd64-signed', 'grub-pc-bin', 'mtools', 'xorriso'
         ])
 
         # Debian GRUB EFI searches for GRUB config in a different place
@@ -126,24 +125,6 @@ def make_iso_file():
         os.makedirs(os.path.join(CD_DIR, 'EFI/debian/fonts'), exist_ok=True)
         shutil.copy(os.path.join(CHROOT_BASEDIR, 'usr/share/grub/unicode.pf2'),
                     os.path.join(CD_DIR, 'EFI/debian/fonts/unicode.pf2'))
-        
-        os.makedirs(os.path.join(CHROOT_BASEDIR, 'boot/grub/fonts'), exist_ok=True)
-
-        run_in_chroot(['ls', '-l', 'usr/share/fonts/truetype/wqy'])
-
-        run_in_chroot([
-            'grub-mkfont',
-            '-o', 'boot/grub/fonts/wqy-zenhei.pf2',
-            '-s', '16',
-            'usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'
-        ])
-
-        font_path = os.path.join(CHROOT_BASEDIR, 'boot/grub/fonts/wqy-zenhei.pf2')
-   
-        os.makedirs(os.path.join(CD_DIR, 'boot/grub/fonts'), exist_ok=True)
-
-        shutil.copy(font_path, os.path.join(CD_DIR, 'EFI/debian/fonts/wqy-zenhei.pf2'))
-        shutil.copy(font_path, os.path.join(CD_DIR, 'boot/grub/fonts/wqy-zenhei.pf2'))
 
         iso = os.path.join(RELEASE_DIR, f'TrueNAS-SCALE-{get_image_version(vendor=TRUENAS_VENDOR)}.iso')
 
