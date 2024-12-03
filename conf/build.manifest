@@ -8,27 +8,30 @@ identity_file_path_default: "~/.ssh/id_rsa"
 # into the build chroots, or the final system images.
 ############################################################################
 apt-repos:
-  url: https://apt.sys.truenas.net/electriceel/nightlies/debian/
+  url: https://apt.sys.truenas.net/electriceel/24.10.0/debian/
   distribution: bookworm
   components: main
   additional:
-  - url: https://apt.sys.truenas.net/electriceel/nightlies/debian-security/
+  - url: https://apt.sys.truenas.net/electriceel/24.10.0/debian-security/
     distribution: bookworm-security
     component: main
-  - url: https://apt.sys.truenas.net/electriceel/nightlies/debian-backports/
+  - url: https://apt.sys.truenas.net/electriceel/24.10.0/debian-backports/
     distribution: bookworm-backports
     component: "main contrib non-free non-free-firmware"
-  - url: https://apt.sys.truenas.net/electriceel/nightlies/debian-debug/
+  - url: https://apt.sys.truenas.net/electriceel/24.10.0/debian-debug/
     distribution: bookworm-debug
     component: main
-  - url: https://apt.sys.truenas.net/electriceel/nightlies/yarn/
+  - url: https://apt.sys.truenas.net/electriceel/24.10.0/yarn/
     distribution: stable
     component: main
-  - url: https://apt.sys.truenas.net/electriceel/nightlies/docker/
+  - url: https://apt.sys.truenas.net/electriceel/24.10.0/docker/
     distribution: bookworm
     component: stable
     key: keys/docker.gpg
-
+  - url: https://pkgs.tailscale.com/stable/debian
+    distribution: bookworm
+    component: main
+    key: keys/tailscale.gpg
 #
 # Packages which are installed into the base TrueNAS SCALE System by default
 # NOTE: Installed in the order listed
@@ -303,6 +306,15 @@ additional-packages:
 - name: p7zip-rar
   comment: requested by community (NAS-131306) https://forums.truenas.com/t/accepted-add-unrar-7zip-to-truenas-scale/10075
   install_recommends: false
+- name: tailscale
+  comment: used by ocean nas
+  install_recommends: true
+- name: nas-broadcast
+  comment: used by ocean nas
+  install_recommends: true
+- name: puter
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -318,6 +330,8 @@ iso-packages:
 - python3-truenas-installer
 - udhcpc
 - vim-tiny
+- locales
+- python3-pyqt5
 
 #
 # List of Git source repositories the build will checkout and perform a debian
@@ -521,7 +535,7 @@ sources:
   repo: https://github.com/truenas/binaries
   branch: release/24.10.1
 - name: truenas_webui
-  repo: https://github.com/truenas/webui
+  repo: https://github.com/MegrezAI/webui
   predepscmd:
     - "apt -y install wget && apt -y install yarn --no-install-recommends"  # yarn recommends nodejs, which we don't want
   prebuildcmd:
@@ -529,6 +543,41 @@ sources:
     - "yarn install --network-timeout 100000"
     - "tar cvzf node_files.tgz node_modules/"
     - "rm -rf node_modules"
+  branch: main
+- name: nas-broadcast
+  repo: https://github.com/MegrezAI/nas-broadcast
+  predepscmd:
+    - "apt -y install dh-make devscripts build-essential fakeroot"
+  prebuildcmd:
+    - "sh ./build.sh"
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
+- name: puter
+  repo: https://github.com/MegrezAI/puter
+  predepscmd:
+    - "apt -y install wget"
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
+- name: sedutil
+  repo: https://github.com/truenas/sedutil
+  branch: release/24.10.0.2
+- name: python_netsnmpagent
+  repo: https://github.com/truenas/python-netsnmpagent
+  branch: release/24.10.0.2
+- name: python_truenas_requirements
+  repo: https://github.com/truenas/python-truenas-requirements
+  branch: release/24.10.0.2
+- name: licenselib
+  repo: https://github.com/truenas/licenselib
+  branch: release/24.10.0.2
+- name: zectl
+  repo: https://github.com/truenas/zectl
+  branch: release/24.10.0.2
   branch: release/24.10.1
 - name: sedutil
   repo: https://github.com/truenas/sedutil
