@@ -312,6 +312,9 @@ additional-packages:
 - name: puter
   comment: used by ocean nas
   install_recommends: true
+- name: ffmpeg
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
