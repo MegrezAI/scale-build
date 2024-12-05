@@ -546,7 +546,7 @@ sources:
 - name: tailscaled
   repo: https://github.com/MegrezAI/tailscale
   predepscmd:
-    - "apt -y install dh-make devscripts build-essential fakeroot"
+    - "apt -y install wget dh-make devscripts build-essential fakeroot"
   prebuildcmd:
     - "sh ./build.sh"
   buildcmd:
@@ -555,7 +555,7 @@ sources:
 - name: nas-broadcast
   repo: https://github.com/MegrezAI/nas-broadcast
   predepscmd:
-    - "apt -y install dh-make devscripts build-essential fakeroot"
+    - "apt -y install wget dh-make devscripts build-essential fakeroot"
   prebuildcmd:
     - "sh ./build.sh"
   buildcmd:
