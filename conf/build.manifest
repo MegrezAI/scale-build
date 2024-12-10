@@ -315,6 +315,9 @@ additional-packages:
 - name: ffmpeg
   comment: used by ocean nas
   install_recommends: true
+- name: oceannas-browser
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -570,7 +573,16 @@ sources:
     - "apt -y install wget"
   prebuildcmd:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
-    - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
+    - "sh -ex debian/fetch_node.sh"  
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+- name: oceannas-browser
+  repo: https://github.com/MegrezAI/oceannas-browser
+  predepscmd:
+    - "apt -y install wget"
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh" 
   buildcmd:
     - "dpkg-buildpackage -us -uc"
   branch: main
