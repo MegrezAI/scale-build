@@ -585,6 +585,9 @@ sources:
   prebuildcmd:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh" 
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.0.2
