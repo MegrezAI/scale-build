@@ -592,7 +592,7 @@ sources:
   repo: https://github.com/truenas/python-netsnmpagent
   branch: release/24.10.0.2
 - name: python_truenas_requirements
-  repo: https://github.com/truenas/python-truenas-requirements
+  repo: https://github.com/MegrezAI/python-truenas-requirements
   branch: release/24.10.0.2
 - name: licenselib
   repo: https://github.com/truenas/licenselib
@@ -648,7 +648,7 @@ sources:
   repo: https://github.com/truenas/truenas_verify
   branch: release/24.10.0.2
 - name: midcli
-  repo: https://github.com/truenas/midcli
+  repo: https://github.com/MegrezAI/midcli
   branch: release/24.10.0.2
 - name: grub2
   repo: https://github.com/truenas/grub2
