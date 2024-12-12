@@ -315,6 +315,9 @@ additional-packages:
 - name: puter
   comment: used by ocean nas
   install_recommends: true
+- name: ffmpeg
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -572,6 +575,13 @@ sources:
   buildcmd:
     - "dpkg-buildpackage -us -uc"
   branch: main
+- name: oceannas-browser
+  repo: https://github.com/MegrezAI/oceannas-browser
+  predepscmd:
+    - "apt -y install wget"
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh" 
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.0.2
