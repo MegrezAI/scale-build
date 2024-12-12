@@ -321,6 +321,9 @@ additional-packages:
 - name: ttf-wqy-zenhei
   comment: used by ocean nas
   install_recommends: true
+- name: oceannas-browser
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
