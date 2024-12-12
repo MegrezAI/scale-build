@@ -324,6 +324,18 @@ additional-packages:
 - name: oceannas-browser
   comment: used by ocean nas
   install_recommends: true
+- name: libgl1
+  comment: used by ocean nas
+  install_recommends: true
+- name: xorg
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5.qtwebengine
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
