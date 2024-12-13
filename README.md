@@ -62,6 +62,7 @@ It is possible using make and environment variables to override which source rep
 export PARALLEL_BUILDS=1
 export SKIP_SOURCE_REPO_VALIDATION=1
 export http_proxy=http://10.10.0.20:8119
+export https_proxy=http://10.10.0.20:8119
 export all_proxy=http://10.10.0.20:8119
 PKG_DEBUG=1 make packages - debug
 
