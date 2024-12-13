@@ -59,6 +59,12 @@ Cleans up all the temporary files and returns to original state.
 ## Overrides
 
 It is possible using make and environment variables to override which source repos get checked out during "make checkout" phase.
+export PARALLEL_BUILDS=1
+export SKIP_SOURCE_REPO_VALIDATION=1
+export http_proxy=http://10.10.0.20:8119
+export https_proxy=http://10.10.0.20:8119
+export all_proxy=http://10.10.0.20:8119
+PKG_DEBUG=1 make packages - debug
 
 TRUENAS_BRANCH_OVERRIDE - Can be used to override all source repos at once
 
