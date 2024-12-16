@@ -152,7 +152,6 @@ base-prune:
 - gstreamer1.0-plugins-base
 - gstreamer1.0-libav
 - libgdk-pixbuf2.0-0
-- x11-common
 - python-is-python2
 # dependency tree openvpn->easy-rsa->opensc
 # we don't need this package since it's for dealing with smart cards
