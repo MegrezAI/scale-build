@@ -359,6 +359,7 @@ iso-packages:
 - python3-pyqt5.qtsvg
 - python3-pyqt5.frameless-window
 - python3-pyqt5.qtx11extras
+- python3-xcffib
 
 
 #
