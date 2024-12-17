@@ -350,10 +350,16 @@ iso-packages:
 - python3-truenas-installer
 - udhcpc
 - vim-tiny
-- locales
+- ttf-wqy-zenhei
+- xorg
+- libgl1
 - python3-pyqt5
 - python3-pyqt-fluent-widgets
-- darkdetect
+- python3-darkdetect
+- python3-pyqt5.qtsvg
+- python3-pyqt5.frameless-window
+- python3-pyqt5.qtx11extras
+
 
 #
 # List of Git source repositories the build will checkout and perform a debian
