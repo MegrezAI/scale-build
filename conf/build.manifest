@@ -334,7 +334,7 @@ additional-packages:
   install_recommends: true
 - name: python3-pyqt5.qtwebengine
   comment: used by ocean nas
-  install_recommends: true
+  install_recommends: false
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
