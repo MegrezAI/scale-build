@@ -352,6 +352,8 @@ iso-packages:
 - vim-tiny
 - locales
 - python3-pyqt5
+- python3-pyqt-fluent-widgets
+- darkdetect
 
 #
 # List of Git source repositories the build will checkout and perform a debian
