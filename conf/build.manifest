@@ -360,7 +360,8 @@ iso-packages:
 - python3-pyqt5-frameless-window
 - python3-pyqt5.qtx11extras
 - python3-xcffib
-
+- picom
+- hsetroot
 
 #
 # List of Git source repositories the build will checkout and perform a debian
