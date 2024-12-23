@@ -152,7 +152,6 @@ base-prune:
 - gstreamer1.0-plugins-base
 - gstreamer1.0-libav
 - libgdk-pixbuf2.0-0
-- x11-common
 - python-is-python2
 # dependency tree openvpn->easy-rsa->opensc
 # we don't need this package since it's for dealing with smart cards
@@ -315,9 +314,24 @@ additional-packages:
 - name: ffmpeg
   comment: used by ocean nas
   install_recommends: true
+- name: ttf-wqy-zenhei
+  comment: used by ocean nas
+  install_recommends: true
 - name: oceannas-browser
   comment: used by ocean nas
   install_recommends: true
+- name: libgl1
+  comment: used by ocean nas
+  install_recommends: true
+- name: xorg
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5.qtwebengine
+  comment: used by ocean nas
+  install_recommends: false
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -333,8 +347,18 @@ iso-packages:
 - python3-truenas-installer
 - udhcpc
 - vim-tiny
-- locales
+- ttf-wqy-zenhei
+- xorg
+- libgl1
 - python3-pyqt5
+- python3-pyqt-fluent-widgets
+- python3-darkdetect
+- python3-pyqt5.qtsvg
+- python3-pyqt5-frameless-window
+- python3-pyqt5.qtx11extras
+- python3-xcffib
+- picom
+- hsetroot
 
 #
 # List of Git source repositories the build will checkout and perform a debian
@@ -595,7 +619,7 @@ sources:
   repo: https://github.com/truenas/python-netsnmpagent
   branch: release/24.10.1
 - name: python_truenas_requirements
-  repo: https://github.com/truenas/python-truenas-requirements
+  repo: https://github.com/MegrezAI/python-truenas-requirements
   branch: release/24.10.1
 - name: licenselib
   repo: https://github.com/truenas/licenselib
@@ -651,7 +675,7 @@ sources:
   repo: https://github.com/truenas/truenas_verify
   branch: release/24.10.1
 - name: midcli
-  repo: https://github.com/truenas/midcli
+  repo: https://github.com/MegrezAI/midcli
   branch: release/24.10.1
 - name: grub2
   repo: https://github.com/truenas/grub2
