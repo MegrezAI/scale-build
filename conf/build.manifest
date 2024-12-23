@@ -577,6 +577,7 @@ sources:
     - "sh -ex debian/fetch_node.sh"  
   buildcmd:
     - "dpkg-buildpackage -us -uc"
+  branch: main
 - name: oceannas-browser
   repo: https://github.com/MegrezAI/oceannas-browser
   predepscmd:
