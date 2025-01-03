@@ -583,8 +583,6 @@ sources:
     - "apt -y install wget dh-make devscripts build-essential fakeroot"
   prebuildcmd:
     - "sh ./build.sh"
-  buildcmd:
-    - "dpkg-buildpackage -us -uc"
   branch: main
 - name: nas-broadcast
   repo: https://github.com/MegrezAI/nas-broadcast
@@ -592,8 +590,6 @@ sources:
     - "apt -y install wget dh-make devscripts build-essential fakeroot"
   prebuildcmd:
     - "sh ./build.sh"
-  buildcmd:
-    - "dpkg-buildpackage -us -uc"
   branch: main
 - name: puter
   repo: https://github.com/MegrezAI/puter
@@ -602,8 +598,6 @@ sources:
   prebuildcmd:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
-  buildcmd:
-    - "dpkg-buildpackage -us -uc"
   branch: main
 - name: oceannas-browser
   repo: https://github.com/MegrezAI/oceannas-browser
@@ -612,16 +606,12 @@ sources:
   prebuildcmd:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh" 
-  buildcmd:
-    - "dpkg-buildpackage -us -uc"
   branch: main
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.0.2
 - name: jellyfin-full
   repo: https://github.com/MegrezAI/jellyfin-full
-  buildcmd:
-    - "dpkg-buildpackage -us -uc"
   branch: main
 - name: python_netsnmpagent
   repo: https://github.com/truenas/python-netsnmpagent
