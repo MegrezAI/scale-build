@@ -335,6 +335,9 @@ additional-packages:
 - name: python3-pyqt5.qtwebengine
   comment: used by ocean nas
   install_recommends: false
+- name: jellyfin-full
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -615,6 +618,11 @@ sources:
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.0.2
+- name: jellyfin-full
+  repo: https://github.com/MegrezAI/jellyfin-full
+  buildcmd:
+    - "dpkg-buildpackage -us -uc"
+  branch: main
 - name: python_netsnmpagent
   repo: https://github.com/truenas/python-netsnmpagent
   branch: release/24.10.0.2
