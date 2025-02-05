@@ -152,7 +152,6 @@ base-prune:
 - gstreamer1.0-plugins-base
 - gstreamer1.0-libav
 - libgdk-pixbuf2.0-0
-- x11-common
 - python-is-python2
 # dependency tree openvpn->easy-rsa->opensc
 # we don't need this package since it's for dealing with smart cards
@@ -218,6 +217,9 @@ apt_preferences:
   Pin-Priority: 1000
 - Package: "*polkit*"
   Pin: "release n=bookworm-security"
+  Pin-Priority: 1000
+- Package: "smartmontools"
+  Pin: "release n=bookworm-backports"
   Pin-Priority: 1000
 - Package: "*ssh*"
   Pin: "release n=bookworm-security"
@@ -303,6 +305,39 @@ additional-packages:
 - name: p7zip-rar
   comment: requested by community (NAS-131306) https://forums.truenas.com/t/accepted-add-unrar-7zip-to-truenas-scale/10075
   install_recommends: false
+- name: tailscaled
+  comment: used by ocean nas
+  install_recommends: true
+- name: nas-broadcast
+  comment: used by ocean nas
+  install_recommends: true
+- name: puter
+  comment: used by ocean nas
+  install_recommends: true
+- name: ffmpeg
+  comment: used by ocean nas
+  install_recommends: true
+- name: ttf-wqy-zenhei
+  comment: used by ocean nas
+  install_recommends: true
+- name: oceannas-browser
+  comment: used by ocean nas
+  install_recommends: true
+- name: libgl1
+  comment: used by ocean nas
+  install_recommends: true
+- name: xorg
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5
+  comment: used by ocean nas
+  install_recommends: true
+- name: python3-pyqt5.qtwebengine
+  comment: used by ocean nas
+  install_recommends: false
+- name: jellyfin-full
+  comment: used by ocean nas
+  install_recommends: true
 
 #
 # List of additional packages installed into TrueNAS SCALE ISO file
@@ -318,6 +353,18 @@ iso-packages:
 - python3-truenas-installer
 - udhcpc
 - vim-tiny
+- ttf-wqy-zenhei
+- xorg
+- libgl1
+- python3-pyqt5
+- python3-pyqt-fluent-widgets
+- python3-darkdetect
+- python3-pyqt5.qtsvg
+- python3-pyqt5-frameless-window
+- python3-pyqt5.qtx11extras
+- python3-xcffib
+- picom
+- hsetroot
 
 #
 # List of Git source repositories the build will checkout and perform a debian
@@ -524,7 +571,7 @@ sources:
   repo: https://github.com/truenas/binaries
   branch: release/24.10.2
 - name: truenas_webui
-  repo: https://github.com/truenas/webui
+  repo: https://github.com/MegrezAI/webui
   predepscmd:
     - "apt -y install wget && apt -y install yarn --no-install-recommends"  # yarn recommends nodejs, which we don't want
   prebuildcmd:
@@ -532,7 +579,37 @@ sources:
     - "yarn install --network-timeout 100000"
     - "tar cvzf node_files.tgz node_modules/"
     - "rm -rf node_modules"
-  branch: release/24.10.2
+  branch: main
+- name: tailscaled
+  repo: https://github.com/MegrezAI/tailscale
+  predepscmd:
+    - "apt -y install wget dh-make devscripts build-essential fakeroot"
+  prebuildcmd:
+    - "sh ./build.sh"
+  branch: main
+- name: nas-broadcast
+  repo: https://github.com/MegrezAI/nas-broadcast
+  predepscmd:
+    - "apt -y install wget dh-make devscripts build-essential fakeroot"
+  prebuildcmd:
+    - "sh ./build.sh"
+  branch: main
+- name: puter
+  repo: https://github.com/MegrezAI/puter
+  predepscmd:
+    - "apt -y install wget"
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh"  # download and install pre-built nodejs
+  branch: main
+- name: oceannas-browser
+  repo: https://github.com/MegrezAI/oceannas-browser
+  predepscmd:
+    - "apt -y install wget"
+  prebuildcmd:
+    - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
+    - "sh -ex debian/fetch_node.sh"
+  branch: main
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.2

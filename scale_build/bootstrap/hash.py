@@ -20,9 +20,11 @@ INSTALLED_PACKAGES_REGEX = re.compile(r'([^\t]+)\t([^\t]+)\t([\S]+)\n')
 
 
 def get_repo_hash(repo_url, distribution):
-    resp = requests.get(urllib.parse.urljoin(repo_url, os.path.join('dists', distribution, 'Release')), timeout=60)
-    resp.raise_for_status()
-    return hashlib.sha256(resp.content).hexdigest()
+    try:
+        resp = requests.get(urllib.parse.urljoin(repo_url, os.path.join('dists', distribution, 'Release')), timeout=60)
+        return hashlib.sha256(resp.content).hexdigest()
+    except Exception:
+        return ""
 
 
 def get_all_repo_hash():
