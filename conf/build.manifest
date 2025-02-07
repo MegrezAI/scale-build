@@ -610,6 +610,9 @@ sources:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh"
   branch: main
+- name: jellyfin-full
+  repo: https://github.com/MegrezAI/jellyfin-full
+  branch: main
 - name: sedutil
   repo: https://github.com/truenas/sedutil
   branch: release/24.10.2
