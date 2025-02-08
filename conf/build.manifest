@@ -528,7 +528,7 @@ sources:
   repo: https://github.com/truenas/zettarepl
   branch: release/24.10.2
 - name: truenas_installer
-  repo: https://github.com/truenas/truenas-installer
+  repo: https://github.com/MegrezAI/truenas-installer
   branch: release/24.10.2
 - name: scst
   repo: https://github.com/truenas/scst
@@ -620,7 +620,7 @@ sources:
   repo: https://github.com/truenas/python-netsnmpagent
   branch: release/24.10.2
 - name: python_truenas_requirements
-  repo: https://github.com/truenas/python-truenas-requirements
+  repo: https://github.com/MegrezAI/python-truenas-requirements
   branch: release/24.10.2
 - name: licenselib
   repo: https://github.com/truenas/licenselib
@@ -658,7 +658,7 @@ sources:
   repo: https://github.com/truenas/swagger
   branch: release/24.10.2
 - name: truenas
-  repo: https://github.com/truenas/middleware
+  repo: https://github.com/MegrezAI/middleware
   branch: release/24.10.2
   subdir: debian
   subpackages:
@@ -676,7 +676,7 @@ sources:
   repo: https://github.com/truenas/truenas_verify
   branch: release/24.10.2
 - name: midcli
-  repo: https://github.com/truenas/midcli
+  repo: https://github.com/MegrezAI/midcli
   branch: release/24.10.2
 - name: grub2
   repo: https://github.com/truenas/grub2
