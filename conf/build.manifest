@@ -329,12 +329,15 @@ additional-packages:
 - name: xorg
   comment: used by ocean nas
   install_recommends: true
-- name: python3-pyqt5
+- name: python-pyqt5
   comment: used by ocean nas
   install_recommends: true
-- name: python3-pyqt5.qtwebengine
+- name: python-pyqt5.qtwebengine
   comment: used by ocean nas
   install_recommends: false
+- name: python-pyqt5.qtwebchannel
+  comment: used by ocean nas
+  install_recommends: true
 - name: jellyfin-full
   comment: used by ocean nas
   install_recommends: true
@@ -356,12 +359,12 @@ iso-packages:
 - ttf-wqy-zenhei
 - xorg
 - libgl1
-- python3-pyqt5
+- python-pyqt5
 - python3-pyqt-fluent-widgets
 - python3-darkdetect
-- python3-pyqt5.qtsvg
+- python-pyqt5.qtsvg
 - python3-pyqt5-frameless-window
-- python3-pyqt5.qtx11extras
+- python-pyqt5.qtx11extras
 - python3-xcffib
 - picom
 - hsetroot
@@ -610,6 +613,16 @@ sources:
     - "chmod +x debian/fetch_node.sh && chmod +x debian/rules" 
     - "sh -ex debian/fetch_node.sh"
   branch: main
+- name: python-pyqt5
+  repo: https://github.com/MegrezAI/python-pyqt5
+  predepscmd:
+    - "apt -y install libpython3.11 qtbase5-dev libqt5help5 libqt5designer5"
+  branch: main
+- name: python-pyqt5-packages
+  repo: https://github.com/MegrezAI/python-pyqt5-packages
+  predepscmd:
+    - "apt -y install qtbase5-dev qtwebengine5-dev libqt5webchannel5 libqt5core5a libqt5x11extras5"
+  branch: main
 - name: jellyfin-full
   repo: https://github.com/MegrezAI/jellyfin-full
   branch: main
@@ -732,6 +745,6 @@ sources:
 
 # Nvidia extensions versions
 ############################################################################
-extensions:
-  nvidia:
-    current: "550.127.05"
+# extensions:
+#   nvidia:
+#     current: "550.127.05"

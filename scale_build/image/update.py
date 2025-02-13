@@ -104,7 +104,7 @@ def install_rootfs_packages_impl():
     # Do any pruning of rootfs
     clean_rootfs()
 
-    build_extensions()
+    # build_extensions()
 
     with open(os.path.join(CHROOT_BASEDIR, 'etc/apt/sources.list'), 'w') as f:
         f.write('\n'.join(get_apt_sources()))
